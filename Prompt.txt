@@ -1,0 +1,462 @@
+Quiero que generes un proyecto nuevo usando React + Vite + TailwindCSS + Framer Motion para el sitio web INSELPRO 2.0 (servicios eléctricos en Santiago de Chile).
+
+El sitio actual es viejo (inselpro.cl), pero quiero una versión completamente nueva en diseño.
+Importante: NO accedas a la web; usa SOLO el contenido y textos que te doy a continuación.
+
+✅ Requerimientos generales
+
+Single Page principal (landing) en /.
+
+Dos rutas extra sencillas:
+
+/privacidad → Política de Privacidad
+
+/terminos → Términos y Condiciones
+
+Responsive (mobile first).
+
+Estilo moderno, profesional y cercano.
+
+Animaciones suaves con Framer Motion:
+
+Scroll reveal en secciones.
+
+Elementos flotantes ligeros (íconos, líneas, destellos).
+
+Parallax suave en el hero.
+
+Código limpio, modular, con componentes reutilizables.
+
+Usa JavaScript, no TypeScript.
+
+🎨 Identidad visual (usar exactamente estos colores)
+
+--color-bg: #050816 (fondo general oscuro tipo “studio”).
+
+--color-surface: #0B1220 (cards y secciones).
+
+--color-primary: #2563EB (azul eléctrico moderno).
+
+--color-secondary: #38BDF8 (celeste técnico).
+
+--color-accent: #FACC15 (amarillo eléctrico para detalles).
+
+--color-text-main: #E5E7EB (texto principal).
+
+--color-text-muted: #9CA3AF (texto secundario).
+
+Tipografías (Google Fonts):
+
+Títulos: Poppins, peso 600–700.
+
+Texto: Inter, peso 400–500.
+
+Usa Tailwind configurado para aplicar estos colores vía theme.extend.colors.
+
+📁 Estructura de archivos
+
+Crea el proyecto con esta estructura:
+
+src/
+  assets/
+    hero-electric.jpg        # imagen de portada genérica
+    pattern-grid.svg         # patrón sutil de fondo
+    icon-residential.svg
+    icon-commercial.svg
+    icon-projects.svg
+    icon-maintenance.svg
+    icon-audit.svg
+    icon-consulting.svg
+  components/
+    Navbar.jsx
+    Hero.jsx
+    Services.jsx
+    Specialties.jsx
+    WhyUs.jsx
+    CallToAction.jsx
+    Contact.jsx
+    Footer.jsx
+    ScrollReveal.jsx         # wrapper para animaciones on-scroll
+  pages/
+    Home.jsx
+    PrivacyPolicy.jsx
+    Terms.jsx
+  App.jsx
+  main.jsx
+  styles/
+    globals.css
+
+
+Usa React Router solo para manejar /, /privacidad y /terminos.
+
+🧩 Componente ScrollReveal
+
+Crea un componente ScrollReveal que envuelva secciones:
+
+Usa motion.div de Framer Motion.
+
+Props:
+
+children
+
+delay (opcional, por defecto 0)
+
+Animación:
+
+initial={{ opacity: 0, y: 40 }}
+
+whileInView={{ opacity: 1, y: 0 }}
+
+viewport={{ once: true, amount: 0.2 }}
+
+transition={{ duration: 0.6, ease: "easeOut", delay }}
+
+Todas las secciones principales deben ir envueltas en ScrollReveal.
+
+🏠 Página principal: / (Home.jsx)
+
+Debe renderizar los siguientes componentes en orden:
+
+<Navbar />
+
+<Hero />
+
+<Services />
+
+<Specialties />
+
+<WhyUs />
+
+<CallToAction />
+
+<Contact />
+
+<Footer />
+
+1️⃣ Navbar.jsx
+
+Barra fija arriba con fondo oscuro semi-transparente y blur al hacer scroll.
+
+Izquierda: texto logo "INSELPRO" en mayúsculas, con acento en el color primary.
+
+Derecha: menú con scroll suave a secciones:
+
+“Servicios” → #services
+
+“Especialidades” → #specialties
+
+“Por qué elegirnos” → #why-us
+
+“Contacto” → #contact
+
+Botón CTA al final del menú:
+
+Texto: "Agenda tu visita técnica"
+
+Hace scroll a #contact.
+
+2️⃣ Hero.jsx
+
+Sección full width, altura mínima min-h-[80vh].
+
+Texto (lado izquierdo):
+
+Título grande:
+
+"Proyectos, instalaciones y reparaciones eléctricas con seguridad profesional"
+
+Subtítulo:
+
+"En INSELPRO entregamos soluciones eléctricas completas para hogares, comercios e industrias en la Región Metropolitana, con enfoque en seguridad, normativa vigente y atención cercana."
+
+Bullets (3):
+
+"Instalaciones residenciales y comerciales"
+
+"Atención de emergencias eléctricas"
+
+"Asesoría y proyectos a medida"
+
+Botones:
+
+CTA principal (amarillo/accent): texto "Quiero cotizar mi proyecto", scroll a #contact.
+
+CTA secundario (outline): texto "Ver servicios", scroll a #services.
+
+Visual (lado derecho):
+
+Card con imagen hero-electric.jpg con bordes redondeados y glow azul.
+
+Encima, elementos flotantes:
+
+pequeños círculos o líneas simulando electricidad, animados suavemente con Framer Motion (translateY/opacity loop).
+
+Fondo del hero: gradiente usando primary y secondary + overlay con pattern-grid.svg muy suave.
+
+3️⃣ Services.jsx (id="services")
+
+Título centrado:
+
+"Servicios eléctricos que cubren todas tus necesidades"
+
+Subtítulo:
+
+"Desde la instalación inicial hasta las emergencias, somos tu aliado eléctrico de confianza."
+
+Muestra una grilla de 6 cards.
+Cada card usa un ícono de assets y el siguiente contenido:
+
+Instalaciones eléctricas residenciales
+
+Texto: "Diseño e instalación de sistemas eléctricos seguros para casas, departamentos y condominios. Trabajamos cumpliendo la normativa SEC y priorizando la seguridad de tu familia."
+
+Instalaciones eléctricas comerciales
+
+Texto: "Soluciones para locales, oficinas y pequeños negocios. Dimensionamos tu instalación según la demanda real de tu operación, evitando sobrecargas y futuro riesgo eléctrico."
+
+Proyectos eléctricos a medida
+
+Texto: "Desarrollo y ejecución de proyectos eléctricos personalizados para industrias, bodegas y empresas. Desde la planificación hasta la implementación en terreno."
+
+Mantenimiento y reparaciones eléctricas
+
+Texto: "Diagnóstico y reparación de fallas, recambio de tableros, protecciones y circuitos. Servicio ideal para prevenir cortes, chispas y daños en tus equipos."
+
+Auditorías y eficiencia energética
+
+Texto: "Revisamos tu instalación para detectar pérdidas, consumos innecesarios y oportunidades de mejorar la eficiencia energética, ayudándote a ahorrar y proteger tus equipos."
+
+Consultoría y asesoría técnica
+
+Texto: "Te acompañamos en la toma de decisiones técnicas: regularización, ampliaciones, permisos, y cumplimiento de normativa eléctrica."
+
+Cada card entra usando <ScrollReveal> con delays escalonados.
+
+4️⃣ Specialties.jsx (id="specialties")
+
+Sección en dos columnas.
+
+Título:
+
+"Nuestra especialidad: seguridad, normativa y atención cercana"
+
+Párrafo introductorio:
+
+"No solo reparamos cables. Analizamos cada caso con criterio profesional, pensando en la seguridad de las personas y la continuidad de tu negocio u hogar."
+
+Lista de puntos fuertes:
+
+"Experiencia en instalaciones domiciliarias, comerciales e industriales."
+
+"Enfoque en seguridad eléctrica y prevención de riesgos."
+
+"Trabajo alineado a normativa SEC y buenas prácticas del rubro."
+
+"Diagnóstico claro antes de cualquier intervención."
+
+"Presupuestos transparentes y sin letra chica."
+
+"Comunicación directa con el técnico a cargo."
+
+Al costado derecho, un “card de confianza” con mensaje:
+
+"En INSELPRO queremos que entiendas lo que está pasando en tu instalación. Te explicamos el problema y la solución en lenguaje simple."
+
+5️⃣ WhyUs.jsx (id="why-us")
+
+Fondo más claro (surface) para diferenciar.
+
+Título:
+
+"¿Por qué elegir INSELPRO?"
+
+Muestra 4–5 ventajas en cards:
+
+"11 años de experiencia en el rubro eléctrico"
+Texto: "Hemos trabajado con clientes residenciales, comercios y pequeñas industrias, resolviendo desde los problemas simples hasta los proyectos más exigentes."
+
+"Técnicos eléctricos certificados"
+Texto: "Profesionales que conocen la normativa y trabajan con equipamiento adecuado, priorizando la seguridad."
+
+"Respuesta rápida en emergencias"
+Texto: "Sabemos lo crítico que puede ser quedarse sin energía o con una falla peligrosa. Buscamos darte una respuesta oportuna."
+
+"Trabajo prolijo y ordenado"
+Texto: "Cuidamos tu espacio, ordenamos y dejamos la instalación presentable. El servicio incluye también respeto por tu hogar o negocio."
+
+"Acompañamiento y asesoría"
+Texto: "Te ayudamos a tomar decisiones hoy pensando en el futuro de tu instalación eléctrica."
+
+Debajo, un breve bloque de “testimonio” genérico:
+
+"Muy buen servicio, puntuales y claros al explicar el problema. Quedamos tranquilos con la solución." — Cliente residencial, Santiago
+
+6️⃣ CallToAction.jsx
+
+Sección con fondo degradado primary → secondary.
+
+Texto centrado:
+
+Título:
+
+"¿Tienes un proyecto o una emergencia eléctrica?"
+
+Subtítulo:
+
+"Cuéntanos qué necesitas y coordinamos una visita técnica para evaluar tu caso."
+
+Botón grande:
+
+Texto: "Agenda tu visita técnica"
+
+Scroll a #contact.
+
+Animar el botón con un pulso muy sutil en hover.
+
+7️⃣ Contact.jsx (id="contact")
+
+Dos columnas.
+
+Columna izquierda: formulario de contacto
+
+Título:
+
+"Contáctanos"
+
+Texto:
+
+"Completa el formulario y te responderemos a la brevedad para coordinar una visita o cotización."
+
+Campos del formulario:
+
+Nombre completo (input text)
+
+Correo electrónico (input email)
+
+Teléfono (input text)
+
+Tipo de servicio (select con opciones: "Instalación", "Mantenimiento / Reparación", "Proyecto nuevo", "Emergencia", "Otro")
+
+Mensaje (textarea)
+
+Botón:
+
+Texto: "Enviar mensaje"
+
+Por ahora, el formulario solo debe:
+
+Validar que nombre, email y mensaje no estén vacíos.
+
+Mostrar un mensaje de éxito simulado tipo: "¡Gracias! Hemos recibido tu mensaje y te contactaremos pronto."
+
+No es necesario conectar un backend real; deja un comentario donde se podría integrar una API.
+
+Columna derecha: datos de contacto
+
+Título:
+
+"También puedes escribirnos directamente"
+
+Contenido:
+
+Teléfono: +56 9 3087 6457
+
+Email: info@inselpro.cl
+
+Áreas de servicio: "Región Metropolitana, Chile"
+
+Pequeño texto:
+
+"Atendemos instalaciones domiciliarias, comerciales e industriales."
+
+8️⃣ Footer.jsx
+
+Fondo #020617, layout en 3 columnas en desktop y stack en mobile.
+
+Columna 1 – Marca
+
+Logo texto "INSELPRO".
+
+Párrafo:
+
+"Empresa de servicios eléctricos enfocada en proyectos, instalaciones y reparaciones seguras para hogares, comercios e industrias."
+
+Columna 2 – Navegación
+
+Links con scroll a:
+
+"Servicios"
+
+"Especialidades"
+
+"Por qué elegirnos"
+
+"Contacto"
+
+Columna 3 – Legal y contacto
+
+Links:
+
+"Política de privacidad" → navega a /privacidad
+
+"Términos y condiciones" → navega a /terminos
+
+Email pequeño: info@inselpro.cl
+
+Línea final centrada:
+
+"© {añoActual} INSELPRO. Todos los derechos reservados."
+
+📄 Política de Privacidad – /privacidad (PrivacyPolicy.jsx)
+
+Crea una página con fondo claro (dentro del dark theme) y texto legible.
+Contenido tipo legal simple, adaptado a un sitio de servicios en Chile.
+Debe incluir secciones:
+
+Introducción
+
+Datos que recopilamos (formulario de contacto / cookies técnicas básicas)
+
+Uso de la información
+
+Compartición de datos (aclarar que no se venden datos a terceros)
+
+Seguridad de la información
+
+Derechos del usuario (acceso, rectificación, eliminación)
+
+Contacto para temas de datos personales (usar info@inselpro.cl)
+
+Redacta el texto en lenguaje claro pero formal.
+
+📄 Términos y Condiciones – /terminos (Terms.jsx)
+
+Crea página con:
+
+Introducción
+
+Uso del sitio web (informativo, no es contrato de obra)
+
+Limitación de responsabilidad (la información puede cambiar, el diagnóstico final siempre es presencial)
+
+Propiedad intelectual del contenido del sitio
+
+Enlaces a terceros (si los hubiera)
+
+Modificaciones de los términos
+
+Contacto (usar info@inselpro.cl)
+
+También en lenguaje claro, tono profesional.
+
+🌐 Consideraciones extra
+
+Usa Tailwind para todo el layout (no CSS plano excepto ajustes globales).
+
+Asegúrate de que el sitio se vea muy bien en mobile, con el hero adaptado (texto arriba, visual abajo).
+
+Implementa scroll suave nativo (scroll-behavior: smooth) en globals.css.
+
+Asegúrate de que los textos estén en español neutro, pensados para clientes en Santiago de Chile.
+
+Cuando termines, muéstrame todos los archivos clave (App.jsx, Home.jsx, componentes y páginas legales) en secciones de código separadas.
