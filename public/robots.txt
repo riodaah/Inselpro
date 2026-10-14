@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://inselpro-e0b68.web.app/sitemap.xml

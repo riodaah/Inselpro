@@ -1,7 +1,14 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { usePageMeta } from '../usePageMeta'
 
 const PrivacyPolicy = () => {
+  usePageMeta({
+    title: 'Política de privacidad | INSELPRO',
+    description: 'Política de privacidad de INSELPRO, servicios eléctricos en Santiago de Chile.',
+    path: '/privacidad',
+  })
+
   return (
     <div className="min-h-screen bg-bg">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
