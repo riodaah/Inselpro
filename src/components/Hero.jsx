@@ -1,23 +1,8 @@
 import { motion } from 'framer-motion'
+import { Check, MessageCircle } from 'lucide-react'
+import { WHATSAPP_URL, scrollToSection } from '../config'
 
 const Hero = () => {
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
-
-  const floatingAnimation = {
-    y: [0, -20, 0],
-    opacity: [0.5, 1, 0.5],
-    transition: {
-      duration: 3,
-      repeat: Infinity,
-      ease: "easeInOut"
-    }
-  }
-
   const benefits = [
     'Instalaciones residenciales y comerciales',
     'Atención de emergencias eléctricas',
@@ -26,17 +11,9 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-[80vh] pt-32 pb-20 overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary via-secondary to-transparent"></div>
-        <div 
-          className="absolute inset-0" 
-          style={{
-            backgroundImage: `radial-gradient(circle at 2px 2px, rgba(37, 99, 235, 0.15) 1px, transparent 0)`,
-            backgroundSize: '40px 40px'
-          }}
-        ></div>
-      </div>
+      {/* Fondo técnico */}
+      <div className="absolute inset-0 bg-grid [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_75%)]"></div>
+      <div className="absolute -top-40 right-0 w-[40rem] h-[40rem] bg-accent/10 rounded-full blur-[120px] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -47,77 +24,77 @@ const Hero = () => {
             transition={{ duration: 0.8 }}
             className="space-y-8"
           >
-            <div className="space-y-4">
-              <motion.h1 
-                className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
+            <div className="space-y-5">
+              <span className="eyebrow">Instalador eléctrico profesional</span>
+              <motion.h1
+                className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[0.95] uppercase"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.8 }}
               >
-                <span className="text-gradient">Proyectos, instalaciones</span>
+                <span className="text-accent">Proyectos, instalaciones</span>
                 <br />
                 <span className="text-text-main">y reparaciones eléctricas</span>
-                <br />
-                
               </motion.h1>
 
-              <motion.p 
+              <motion.p
                 className="text-text-muted text-lg leading-relaxed max-w-2xl"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
               >
-                En INSELPRO entregamos soluciones eléctricas completas para hogares, 
-                comercios e industrias en la Región Metropolitana, con enfoque en 
+                En INSELPRO entregamos soluciones eléctricas completas para hogares,
+                comercios e industrias en la Región Metropolitana, con enfoque en
                 seguridad, normativa vigente y atención cercana.
               </motion.p>
             </div>
 
             {/* Benefits List */}
-            <motion.div 
+            <motion.ul
               className="space-y-3"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6, duration: 0.8 }}
             >
               {benefits.map((benefit, index) => (
-                <motion.div
+                <motion.li
                   key={index}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.7 + index * 0.1 }}
-                  className="flex items-center space-x-3"
+                  className="flex items-center gap-3"
                 >
-                  <div className="w-2 h-2 bg-accent rounded-full"></div>
+                  <span className="flex items-center justify-center w-5 h-5 rounded-sm bg-accent/15 text-accent">
+                    <Check className="w-3.5 h-3.5" strokeWidth={3} />
+                  </span>
                   <span className="text-text-main">{benefit}</span>
-                </motion.div>
+                </motion.li>
               ))}
-            </motion.div>
+            </motion.ul>
 
             {/* CTAs */}
-            <motion.div 
+            <motion.div
               className="flex flex-col sm:flex-row gap-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1, duration: 0.8 }}
             >
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => scrollToSection('contact')}
-                className="bg-accent text-bg px-8 py-4 rounded-lg font-semibold text-lg hover:bg-accent/90 transition-colors duration-300 shadow-lg"
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary text-lg"
               >
+                <MessageCircle className="w-5 h-5" />
                 Quiero cotizar mi proyecto
-              </motion.button>
-              
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              </a>
+
+              <button
                 onClick={() => scrollToSection('services')}
-                className="border-2 border-primary text-primary px-8 py-4 rounded-lg font-semibold text-lg hover:bg-primary hover:text-white transition-all duration-300"
+                className="btn-outline text-lg"
               >
                 Ver servicios
-              </motion.button>
+              </button>
             </motion.div>
           </motion.div>
 
@@ -128,7 +105,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="relative"
           >
-            <div className="relative rounded-2xl overflow-hidden glow-blue">
+            <div className="relative rounded-xl overflow-hidden border border-line shadow-[0_0_80px_-20px_rgba(245,164,0,0.35)]">
               <video
                 autoPlay
                 loop
@@ -137,40 +114,12 @@ const Hero = () => {
                 className="w-full h-full object-cover aspect-square"
               >
                 <source src="/hero-video.mp4" type="video/mp4" />
-                {/* Fallback si el video no carga */}
-                <div className="w-full h-full bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 flex items-center justify-center">
-                  <div className="text-6xl">⚡</div>
-                </div>
               </video>
-              {/* Overlay sutil para mejorar legibilidad si es necesario */}
-              <div className="absolute inset-0 bg-gradient-to-t from-bg/20 to-transparent pointer-events-none"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-bg/30 to-transparent pointer-events-none"></div>
             </div>
-
-            {/* Floating elements */}
-            <motion.div
-              animate={{
-                y: [0, -15, 0],
-                rotate: [0, 5, 0]
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-              className="absolute -top-6 -right-6 w-24 h-24 bg-accent/20 rounded-full blur-xl"
-            />
-            <motion.div
-              animate={{
-                y: [0, 15, 0],
-                rotate: [0, -5, 0]
-              }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-              className="absolute -bottom-6 -left-6 w-32 h-32 bg-primary/20 rounded-full blur-xl"
-            />
+            {/* Esquinas tipo visor */}
+            <span className="absolute -top-3 -left-3 w-10 h-10 border-t-2 border-l-2 border-accent"></span>
+            <span className="absolute -bottom-3 -right-3 w-10 h-10 border-b-2 border-r-2 border-accent"></span>
           </motion.div>
         </div>
       </div>
@@ -179,4 +128,3 @@ const Hero = () => {
 }
 
 export default Hero
-

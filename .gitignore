@@ -27,3 +27,6 @@ dist-ssr
 .firebase/
 *-firebase-adminsdk-*.json
 service-account*.json
+
+# Claude Code
+.claude/

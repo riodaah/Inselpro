@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { MessageCircle } from 'lucide-react'
+import { WHATSAPP_URL, scrollToSection } from '../config'
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
@@ -12,13 +14,6 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
 
   const menuItems = [
     { label: 'Servicios', target: 'services' },
@@ -34,24 +29,23 @@ const Navbar = () => {
       transition={{ duration: 0.5 }}
       className={`fixed w-full top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-bg/80 backdrop-blur-md shadow-lg'
-          : 'bg-transparent'
+          ? 'bg-bg/85 backdrop-blur-md border-b border-line'
+          : 'bg-transparent border-b border-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <motion.div
-            whileHover={{ scale: 1.05 }}
+          <div
             className="cursor-pointer flex items-center"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
-            <img 
-              src="/logo-sin-fondo.png" 
-              alt="INSELPRO - Instalador Eléctrico Profesional" 
+            <img
+              src="/logo-sin-fondo.png"
+              alt="INSELPRO - Instalador Eléctrico Profesional"
               className="h-12 w-auto"
             />
-          </motion.div>
+          </div>
 
           {/* Menu Desktop */}
           <div className="hidden md:flex items-center space-x-8">
@@ -59,30 +53,34 @@ const Navbar = () => {
               <button
                 key={item.target}
                 onClick={() => scrollToSection(item.target)}
-                className="text-text-main hover:text-primary transition-colors duration-300 text-sm font-medium"
+                className="text-text-main/80 hover:text-accent transition-colors duration-200 text-sm font-medium uppercase tracking-wider"
               >
                 {item.label}
               </button>
             ))}
-            
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => scrollToSection('contact')}
-              className="bg-accent text-bg px-6 py-2.5 rounded-lg font-semibold hover:bg-accent/90 transition-colors duration-300"
+
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary !px-5 !py-2.5 text-sm"
             >
+              <MessageCircle className="w-4 h-4" />
               Agenda tu visita técnica
-            </motion.button>
+            </a>
           </div>
 
           {/* Menu Mobile Button */}
           <div className="md:hidden">
-            <button
-              onClick={() => scrollToSection('contact')}
-              className="bg-accent text-bg px-4 py-2 rounded-lg text-sm font-semibold"
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary !px-4 !py-2 text-sm"
             >
+              <MessageCircle className="w-4 h-4" />
               Agendar
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -91,4 +89,3 @@ const Navbar = () => {
 }
 
 export default Navbar
-

@@ -7,20 +7,23 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: '#0a0e27',
-        surface: '#0B1220',
-        primary: '#2563EB',
-        secondary: '#38BDF8',
-        accent: '#FACC15',
-        'text-main': '#e2e8f0',
-        'text-muted': '#9CA3AF',
+        // Paleta tomada del logo: negro, ámbar y blanco
+        bg: '#0B0B0C',
+        surface: '#131315',
+        elevated: '#1B1B1E',
+        line: '#2A2A2E',
+        accent: '#F5A400',
+        'accent-light': '#FFC233',
+        primary: '#F5A400',
+        secondary: '#FFC233',
+        'text-main': '#F4F4F5',
+        'text-muted': '#A1A1AA',
       },
       fontFamily: {
-        inter: ['Inter', 'sans-serif'],
-        poppins: ['Poppins', 'sans-serif'],
+        sans: ['Barlow', 'system-ui', 'sans-serif'],
+        display: ['"Barlow Condensed"', 'Barlow', 'sans-serif'],
       },
     },
   },
   plugins: [],
 }
-
