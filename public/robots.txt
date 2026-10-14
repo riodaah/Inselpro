@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://inselpro-e0b68.web.app/sitemap.xml
+Sitemap: https://www.inselpro.cl/sitemap.xml

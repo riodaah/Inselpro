@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-const SITE_URL = 'https://inselpro-e0b68.web.app'
+const SITE_URL = 'https://www.inselpro.cl'
 
 // Ajusta título, descripción y URL canónica de cada página
 export const usePageMeta = ({ title, description, path }) => {
