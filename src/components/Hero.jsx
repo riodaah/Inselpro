@@ -113,7 +113,7 @@ const Hero = () => {
                 playsInline
                 className="w-full h-full object-cover aspect-[4/5]"
               >
-                <source src="/hero-video.mp4" type="video/mp4" />
+                <source src="/hero-inselpro.mp4" type="video/mp4" />
               </video>
               <div className="absolute inset-0 bg-gradient-to-t from-bg/30 to-transparent pointer-events-none"></div>
             </div>
